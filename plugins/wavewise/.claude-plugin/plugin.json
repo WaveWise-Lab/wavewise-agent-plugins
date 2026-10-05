@@ -1,0 +1,19 @@
+{
+  "name": "wavewise",
+  "version": "0.2.0",
+  "description": "WaveWise Merchant in Claude: read AI-visibility measurements, missions, evidence and confirmed brand facts, and record decisions with your consent. Connects to the WaveWise MCP server with your own sign-in.",
+  "author": {
+    "name": "WaveWise",
+    "url": "https://wavewiseintelligence.com"
+  },
+  "homepage": "https://wavewiseintelligence.com/ai-apps",
+  "repository": "https://github.com/WaveWise-Lab/wavewise-agent-plugins",
+  "keywords": [
+    "geo",
+    "ai-visibility",
+    "brand-facts",
+    "merchant",
+    "mcp",
+    "creators"
+  ]
+}

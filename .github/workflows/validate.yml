@@ -1,0 +1,50 @@
+name: validate
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    env:
+      # openai/codex plugin-creator validator, pinned by commit and hash.
+      CODEX_REF: 84aa75204ad604bcf498df180d128181c89b2f0b
+      CODEX_VALIDATOR_SHA256: f4eeadb733b28b0c3e714de263a76d6542866a672f3e99bdffcf4dbcdf85e944
+      CODEX_IDENTIFIER_SHA256: a6d51ce4a9a7e8f85626ff5808a467a67574e7f8cdf1167ffb467c5f67e57223
+      CLAUDE_CODE_VERSION: 2.1.183
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Content guard (secrets, tokens, personal data)
+        run: node scripts/check-content.mjs
+
+      - name: Claude plugin and marketplace
+        run: |
+          npm install --global "@anthropic-ai/claude-code@${CLAUDE_CODE_VERSION}"
+          claude plugin validate ./plugins/wavewise
+          claude plugin validate .
+
+      - name: Codex plugin
+        run: |
+          mkdir -p .codex-validator
+          base="https://raw.githubusercontent.com/openai/codex/${CODEX_REF}/codex-rs/skills/src/assets/samples/plugin-creator/scripts"
+          curl -fsSL "$base/validate_plugin.py" -o .codex-validator/validate_plugin.py
+          curl -fsSL "$base/identifier_validation.py" -o .codex-validator/identifier_validation.py
+          echo "${CODEX_VALIDATOR_SHA256}  .codex-validator/validate_plugin.py" | sha256sum --check
+          echo "${CODEX_IDENTIFIER_SHA256}  .codex-validator/identifier_validation.py" | sha256sum --check
+          pip install pyyaml==6.0.2
+          python .codex-validator/validate_plugin.py ./plugins/wavewise
+
+      - name: Both manifests point at the same MCP server
+        run: node scripts/check-manifests.mjs

@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "wavewise": {
+      "type": "http",
+      "url": "https://mcp.wavewiseintelligence.com/mcp"
+    }
+  }
+}

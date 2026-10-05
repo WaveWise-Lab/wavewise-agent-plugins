@@ -1,0 +1,39 @@
+{
+  "name": "wavewise",
+  "version": "0.2.0",
+  "description": "WaveWise Merchant in Codex and ChatGPT: read AI-visibility measurements, missions, evidence and confirmed brand facts, and record decisions with your consent.",
+  "author": {
+    "name": "WaveWise",
+    "url": "https://wavewiseintelligence.com"
+  },
+  "homepage": "https://wavewiseintelligence.com/ai-apps",
+  "repository": "https://github.com/WaveWise-Lab/wavewise-agent-plugins",
+  "keywords": [
+    "geo",
+    "ai-visibility",
+    "brand-facts",
+    "merchant",
+    "mcp",
+    "creators"
+  ],
+  "skills": "./skills/",
+  "mcpServers": "./.mcp.json",
+  "interface": {
+    "displayName": "WaveWise",
+    "shortDescription": "See how AI assistants present your products, and act on it",
+    "longDescription": "Connect your WaveWise Merchant workspace. Your assistant can read how often AI answer surfaces present or leave out your products, the missions and evidence behind each finding, and the brand facts your team has confirmed. With the permissions you grant, it can also record decisions, propose facts, and prepare measurements. Anything that costs money or needs an admin still waits for a person in WaveWise.",
+    "developerName": "WaveWise",
+    "category": "Business",
+    "capabilities": [
+      "Read",
+      "Write"
+    ],
+    "websiteURL": "https://wavewiseintelligence.com/ai-apps",
+    "privacyPolicyURL": "https://wavewiseintelligence.com/privacy",
+    "defaultPrompt": [
+      "Where did our latest measurement lose to competitors?",
+      "Which missions are waiting for a decision?",
+      "Draft a product description from our confirmed facts."
+    ]
+  }
+}

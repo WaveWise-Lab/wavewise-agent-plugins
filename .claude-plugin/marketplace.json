@@ -1,0 +1,15 @@
+{
+  "name": "wavewise",
+  "owner": {
+    "name": "WaveWise",
+    "url": "https://wavewiseintelligence.com"
+  },
+  "description": "WaveWise plugins for Claude Code and Cowork: connect your WaveWise Merchant workspace to your assistant.",
+  "plugins": [
+    {
+      "name": "wavewise",
+      "source": "./plugins/wavewise",
+      "description": "WaveWise Merchant: AI-visibility measurements, missions, evidence and confirmed brand facts, with your consent."
+    }
+  ]
+}
